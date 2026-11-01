@@ -3,218 +3,103 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Найди Три — карточная игра на внимательность</title>
-<meta name="description" content="«Найди Три» — логическая карточная игра для Android: находите тройки карт, где каждый признак одинаков или различен у всех. Бесплатно, в RuStore.">
-<link rel="icon" href="icon.png">
-<style>
-  :root {
-    --bg: #14102b;
-    --bg-soft: #1d1740;
-    --text: #ece9ff;
-    --muted: #a9a3c9;
-    --accent: #ef4444;
-    --accent-dark: #c53030;
-    --card: rgba(255, 255, 255, 0.055);
-    --line: rgba(255, 255, 255, 0.1);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: radial-gradient(1200px 700px at 80% -10%, #2a1f5c 0%, transparent 60%), var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
-  header {
-    border-bottom: 1px solid var(--line);
-    background: rgba(20, 16, 43, 0.75);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-  .nav { display: flex; align-items: center; gap: 12px; height: 68px; }
-  .nav img { width: 38px; height: 38px; border-radius: 10px; }
-  .nav b { font-size: 17px; letter-spacing: 0.2px; }
-  .nav .spacer { flex: 1; }
-  .nav a.link { color: var(--muted); text-decoration: none; font-size: 14px; }
-  .nav a.link:hover { color: var(--text); }
-  main { padding: 56px 0 40px; }
-  .hero {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 48px;
-    align-items: center;
-  }
-  .hero h1 {
-    font-size: clamp(40px, 6vw, 64px);
-    line-height: 1.05;
-    margin: 0 0 18px;
-    letter-spacing: -1.5px;
-  }
-  .hero h1 span { color: var(--accent); }
-  .lead { font-size: 18px; color: var(--muted); margin: 0 0 28px; max-width: 520px; }
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    font-weight: 700;
-    padding: 14px 24px;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.28);
-    transition: transform 0.15s ease, background 0.15s ease;
-  }
-  .btn:hover { background: var(--accent-dark); transform: translateY(-1px); }
-  .meta { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
-  .cover {
-    width: 100%;
-    border-radius: 22px;
-    display: block;
-    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
-    border: 1px solid var(--line);
-  }
-  section { margin-top: 72px; }
-  h2 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.4px; }
-  .sub { color: var(--muted); margin: 0 0 24px; }
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 22px;
-  }
-  .card .num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    border-radius: 10px;
-    background: var(--accent);
-    font-weight: 800;
-    font-size: 15px;
-    margin-bottom: 12px;
-  }
-  .card h3 { margin: 0 0 6px; font-size: 17px; }
-  .card p { margin: 0; color: var(--muted); font-size: 14.5px; }
-  .shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .shots img {
-    width: 100%;
-    border-radius: 18px;
-    border: 1px solid var(--line);
-    display: block;
-  }
-  .note {
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 22px 24px;
-    color: var(--muted);
-    font-size: 14.5px;
-  }
-  .note a { color: var(--text); }
-  footer {
-    margin-top: 72px;
-    border-top: 1px solid var(--line);
-    padding: 28px 0 40px;
-    color: var(--muted);
-    font-size: 13.5px;
-  }
-  footer .row { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
-  footer .spacer { flex: 1; }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--text); }
-  @media (max-width: 820px) {
-    .hero { grid-template-columns: 1fr; gap: 28px; }
-    .hero .cover { order: -1; }
-    .grid, .shots { grid-template-columns: 1fr; }
-    main { padding-top: 32px; }
-    section { margin-top: 52px; }
-  }
-  @media (max-width: 560px) {
-    .nav .link { display: none; }
-    .nav b { font-size: 16px; white-space: nowrap; }
-  }
-</style>
+<title>Серебряков Серёга — мобильные игры</title>
+<meta name="description" content="Независимый разработчик мобильных игр. «Найди Три» — логическая карточная игра для Android в RuStore. Новые игры появятся на этой странице.">
+<link rel="icon" href="assets/find-three-icon.png">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<header>
+<header class="site-header">
   <div class="wrap nav">
-    <img src="icon.png" alt="Иконка игры «Найди Три»">
-    <b>Найди Три</b>
-    <span class="spacer"></span>
-    <a class="link" href="https://www.rustore.ru/catalog/app/ru.ssserg.findthree">RuStore</a>
-    <a class="link" href="privacy.html">Конфиденциальность</a>
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span class="brand-text">
+        <b>Серебряков Серёга</b>
+        <small>мобильные игры</small>
+      </span>
+    </a>
+    <nav class="nav-links">
+      <a href="#games">Игры</a>
+      <a href="#about">О разработчике</a>
+      <a href="mailto:serg1034@yandex.ru">Контакты</a>
+    </nav>
   </div>
 </header>
 
 <main class="wrap">
-  <div class="hero">
+  <section class="home-hero">
+    <div class="eyebrow">Независимый разработчик</div>
+    <h1>Мобильные игры для <span>коротких пауз</span></h1>
+    <p class="lead">Делаю небольшие игры с понятными правилами: одна минута на вход, много партий подряд. Сейчас в RuStore — «Найди Три».</p>
+    <div class="actions">
+      <a class="btn" href="#games">Смотреть игры</a>
+      <a class="btn ghost" href="mailto:serg1034@yandex.ru">Написать</a>
+    </div>
+  </section>
+
+  <section class="section" id="games">
+    <div class="section-head">
+      <div>
+        <h2>Игры</h2>
+        <p>Проекты, в которые уже можно играть.</p>
+      </div>
+      <span class="count">1 игра</span>
+    </div>
+
+    <div class="game-grid">
+      <article class="game-card">
+        <a class="game-cover" href="games/find-three.html">
+          <img src="assets/find-three-cover.jpg" alt="Обложка игры «Найди Три»: три карты и название" loading="lazy">
+        </a>
+        <div class="game-body">
+          <div class="game-top">
+            <h3><a href="games/find-three.html">Найди Три</a></h3>
+            <span class="badge">6+</span>
+          </div>
+          <p class="game-desc">Логическая карточная игра: найдите тройку, где каждый признак одинаков у всех или различен у каждой. Соло на время и партии против бота.</p>
+          <div class="tags">
+            <span class="tag">Логика</span>
+            <span class="tag">Карточная</span>
+            <span class="tag">Android</span>
+          </div>
+          <div class="game-actions">
+            <a class="btn small" href="games/find-three.html">Подробнее</a>
+            <a class="link-arrow" href="https://www.rustore.ru/catalog/app/ru.ssserg.findthree">RuStore →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="game-card placeholder">
+        <div class="placeholder-cover"><span>+</span></div>
+        <div class="game-body">
+          <h3>Новая игра</h3>
+          <p>Следующий проект появится здесь. Пока он в разработке — следите за обновлениями.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="about" id="about">
     <div>
-      <h1>Найди <span>Три</span></h1>
-      <p class="lead">Логическая карточная игра на внимательность. На столе 12 карт — найдите тройку, в которой каждый признак либо одинаков у всех, либо различен у каждой.</p>
-      <a class="btn" href="https://www.rustore.ru/catalog/app/ru.ssserg.findthree">
-        Скачать в RuStore
-      </a>
-      <p class="meta">Android 7.0+ · Возраст 6+ · Бесплатно · Русский и английский</p>
+      <h2>О разработчике</h2>
+      <p>Меня зовут Серёга. Я делаю мобильные игры на Godot: без аккаунтов, с короткими партиями и понятными правилами. «Найди Три» — первый проект, опубликованный в RuStore.</p>
+      <p>Есть идея, замечание или предложение о сотрудничестве? Напишите на <a href="mailto:serg1034@yandex.ru">serg1034@yandex.ru</a>.</p>
+      <p>В играх может показываться реклама Рекламной сети Яндекса. Подробности — в <a href="privacy.html">политике конфиденциальности</a>.</p>
     </div>
-    <img class="cover" src="cover.jpg" alt="Обложка игры «Найди Три»: три карты и название">
-  </div>
-
-  <section>
-    <h2>Как играть</h2>
-    <p class="sub">Правила объясняются за минуту, а партии идут на скорость.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="num">1</div>
-        <h3>Смотрите на признаки</h3>
-        <p>У каждой карты четыре признака: количество, форма, цвет и заливка. Каждый признак бывает одним из трёх вариантов.</p>
-      </div>
-      <div class="card">
-        <div class="num">2</div>
-        <h3>Соберите тройку</h3>
-        <p>Тройка подходит, если по каждому признаку карты полностью совпадают или полностью различаются. Промежуточных вариантов нет.</p>
-      </div>
-      <div class="card">
-        <div class="num">3</div>
-        <h3>Успейте первым</h3>
-        <p>Играйте соло на время, против бота трёх уровней сложности или нажимайте «Нашёл!» раньше соперника.</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Скриншоты</h2>
-    <p class="sub">Реальные кадры из игры.</p>
-    <div class="shots">
-      <img src="shot-1.jpg" alt="Экран с правилами игры" loading="lazy">
-      <img src="shot-2.jpg" alt="Игровое поле с картами" loading="lazy">
-      <img src="shot-3.jpg" alt="Собранная тройка карт" loading="lazy">
-    </div>
-  </section>
-
-  <section>
-    <h2>О разработчике</h2>
-    <div class="note">
-      <p style="margin-top:0"><b style="color:var(--text)">Серебряков Серёга</b> — независимый разработчик мобильных игр.</p>
-      <p>Связь и поддержка: <a href="mailto:serg1034@yandex.ru">serg1034@yandex.ru</a></p>
-      <p style="margin-bottom:0">В игре показывается реклама Рекламной сети Яндекса: полноэкранная между партиями и видео за вознаграждение — только по желанию игрока, за подсказки. Данные, которые собирает рекламный SDK, описаны в <a href="privacy.html">политике конфиденциальности</a>.</p>
+    <div class="facts">
+      <div class="fact"><b>1</b><span>игра в RuStore</span></div>
+      <div class="fact"><b>6+</b><span>возрастной рейтинг</span></div>
+      <div class="fact"><b>RU/EN</b><span>языки интерфейса</span></div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap row">
+<footer class="site-footer">
+  <div class="wrap footer-row">
     <span>© 2026 Серебряков Серёга</span>
     <span class="spacer"></span>
-    <a href="privacy.html">Политика конфиденциальности</a>
+    <a href="#games">Игры</a>
+    <a href="privacy.html">Конфиденциальность</a>
     <a href="app-ads.txt">app-ads.txt</a>
     <a href="https://www.rustore.ru/catalog/app/ru.ssserg.findthree">RuStore</a>
     <a href="mailto:serg1034@yandex.ru">Почта</a>
